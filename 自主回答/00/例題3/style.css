@@ -1,0 +1,32 @@
+h1 {
+    color: red;
+}
+
+h2 {
+    background-color: blue;
+}
+
+h3 {
+    width: 50%;
+    background-color: yellow;
+}
+
+p {
+    font-family: "MS Mincho", "MS 明朝", serif;     /* これ少し難しい。変えたいフォントの種類は調べた方が良い。覚えておくのは font-family ココ！ */
+    font-size: 20px;
+}
+
+div {
+    width: 50%;
+    border: 1px solid black;
+}
+
+/* 
+    セレクタ {
+        border: 線の太さ 線の種類 線の色;
+    }
+    で枠が作れる！
+    線の太さは〇px
+    線の種類はsolid(実線)
+    線の色は直接カラー指定してもOK、対応表でカラーをコードで入力してもOK
+*/
