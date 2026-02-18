@@ -64,14 +64,21 @@ document.addEventListener('DOMContentLoaded',function()
 
     }
 
+    alert
+
     // ラジオ（input[type=radio]）を作成する
-    let count3 = 0
-    for(let gender of genders)
-    {
-        // 最初にinputタグを作成する
-        let in_element = document.createElement('input');
+    // let count3 = 0
+    // for(let gender of genders)
+    // {
+    //     // 最初にinputタグを作成する
+    //     let in_element = document.createElement('input');
 
-        // inputタグ内にtype=radioを作成する？
+    //     // inputタグ内にtype=radioを作成する？
 
-    }
+    // }
+
+    // HTML上の入力を連想配列にしてテーブルに入れる
+    // let user = {
+        
+    // }
 });
