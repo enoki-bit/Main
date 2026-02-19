@@ -38,10 +38,10 @@ document.addEventListener('DOMContentLoaded',function()
     // if文でcount2が０の時、空白を入れるコードを先に記述できる？
     if(count2 == 0)
     {
-        let op_element0 = document.createElement('option');
-        op_element0.value = count2;
-        op_element0.textContent = '';
-        document.getElementById("sel_3").appendChild(op_element0);
+        let op_element0 = document.createElement('option'); // <option></option>
+        op_element0.value = count2; // <option value = '値'></option>
+        op_element0.textContent = '';   // .textContentで文字を選択。<option value = 0> </option>の形になり、空白行ができる
+        document.getElementById("sel_3").appendChild(op_element0);  // HTMLに入れ込む
     }
 
     for(let prefecture of prefectures)
@@ -54,9 +54,9 @@ document.addEventListener('DOMContentLoaded',function()
 
         // オプションタグの中に配列を入れる
         op_element.textContent = prefecture;　// .textContentで文字を選択。fruitの配列から要素番号を持ってきて、文字化する
-                                              //　これで、<option value = 0> りんご </option>の形になる
+                                              //　これで、<option value = 1> 北海道 </option>の形になる
         
-        // HTMLに出来たオプションタグを子要素として入れ込む ←これ忘れがち！
+        // HTMLに出来たオプションタグを子要素として入れ込む
         document.getElementById("sel_3").appendChild(op_element);
 
         // countをインクリメントする
@@ -71,7 +71,8 @@ document.addEventListener('DOMContentLoaded',function()
         // 最初にinputタグを作成する
         let in_element = document.createElement('input');
 
-        // inputタグ内にtype=radioを作成する？
+        // inputタグ内にinput type = 'radio'を作成する
+        // 
 
     }
 });
