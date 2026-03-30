@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>全国路線検索</title>
+        <link rel = "stylesheet" href = "style.css">
+        <script src="script-q1.js"></script>
+    </head>
+
+    <body>
+    <body background="backimg.png">
+    </body>
+
+        <form id="frm">
+            <div id="frm_title">
+                <h4>JavaScript課題 全国路線検索</h4>
+            </div>
+
+            <div id="frm_body">
+                <div class="body_row">
+                    <label class="lbl_title">エリア</label>
+                    <select id="sel_1">
+                     <option value="">エリアを選択してください</option>
+                    </select>
+                </div>
+                <div class="body_row">
+                    <label class="lbl_title">都道府県</label>
+                    <select id="sel_2">
+                     <option value="">都道府県を選択してください</option>
+                    </select>
+                </div>
+                <div class="body_row">
+                    <label class="lbl_title">路線</label>
+                    <select id="sel_3">
+                    　<option value="">路線を選択してください</option>
+                    </select>
+                </div>
+                <div class="body_row">
+                    <label class="lbl_title">駅</label>
+                    <select id="sel_4">
+                     <option value="">駅を選択してください</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="frm_footer">
+                <button type="button" id="ft_btn">入力結果の表示</button>
+                <button type="button" id="ft_btn2">入力内容のクリア</button>
+            </div>
+
+        </form>
+
+        <table class="table">
+            <thead class="thead">
+                <tr class="tr">
+                    <th class="th">都道府県</td>
+                    <th class="th">路線</td>
+                    <th class="th">駅</td>
+                    <th class="th">緯度</td>
+                    <th class="th">軽度</td>
+                </tr>
+            </thead>
+            <tbody id="result">
+            </tbody>
+        </table>
+    </body>
+
+</html>

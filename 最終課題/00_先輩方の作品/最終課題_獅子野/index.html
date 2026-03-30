@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ハジメマシテ製造機</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="bell"></div>
+    <h1 class="title">ハジメマシテ製造機</h1>
+    <p class="future">（未来デパート試作品）</p>
+    <p class="sub">名前を入れると、自己紹介を作ってくれる秘密道具！</p>
+
+    <label for="name">名前</label>
+    <input id="name" type="text" placeholder="例：ドラえ〇ん（空でもOK）" />
+
+    <button id="genBtn">つかう</button>
+
+    <div id="loading" class="loading hidden">
+      <span class="loading-dot"></span>
+      <span class="loading-text">ひみつ道具、作動中...</span>
+    </div>
+
+    <div id="result">ここに自己紹介が表示されます。</div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

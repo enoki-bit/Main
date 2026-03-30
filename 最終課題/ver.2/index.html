@@ -3,24 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>本検索サイト</title>
+  <title>本情報検索サイト</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>本検索サイト</h1>
+  <header>
+    <h1>本情報検索サイト</h1>
+    <p class="subtitle">タイトルや著者名を入力して本を検索できます</p>
+  </header>
 
-  <p>本のタイトルを入力してください</p>
+  <main class="container">
+    <section class="search-section">
+      <h2>本を検索</h2>
+      <div class="search-box">
+        <input
+          type="text"
+          id="keyword"
+          placeholder="例：Harry Potter / Natsume Soseki"
+        >
+        <button id="searchButton">検索</button>
+      </div>
+      <p id="message" class="message"></p>
+    </section>
 
-  <input type="text" id="keyword" placeholder="例：Harry Potter">
-  <button id="searchButton">検索</button>
+    <section class="content">
+      <section class="results-section">
+        <h2>検索結果</h2>
+        <ul id="resultsList" class="results-list"></ul>
+      </section>
 
-  <p id="message"></p>
-
-  <ul id="results"></ul>
-
-  <div id="detail">
-    ここに本の詳細を表示します
-  </div>
+      <section class="detail-section">
+        <h2>本の詳細</h2>
+        <div id="detailArea" class="detail-card empty-detail">
+          検索結果から本を1冊選んでください。
+        </div>
+      </section>
+    </section>
+  </main>
 
   <script src="script.js"></script>
 </body>

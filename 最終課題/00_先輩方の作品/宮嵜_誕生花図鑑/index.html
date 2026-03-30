@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>誕生花図鑑</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+
+<div id="petals-container"></div>
+
+<header class="site-header">
+<div class="header-inner">
+<h1 class="site-title">誕生花図鑑</h1>
+<p class="site-subtitle">Birthday Flower</p>
+</div>
+</header>
+
+<main class="main-content">
+
+<section class="search-card">
+
+<h2 class="search-card__title">
+<i class="fa-solid fa-magnifying-glass"></i>
+日付を選んで誕生花を調べよう
+</h2>
+
+<p class="search-card__desc">あなたの誕生日を選択してください</p>
+
+<div class="form-row">
+
+<div class="form-group">
+<label class="form-label">月</label>
+<div class="select-wrapper">
+<select id="select-month" class="form-select"></select>
+<i class="fa-solid fa-chevron-down select-arrow"></i>
+</div>
+</div>
+
+<div class="form-group">
+<label class="form-label">日</label>
+<div class="select-wrapper">
+<select id="select-day" class="form-select"></select>
+<i class="fa-solid fa-chevron-down select-arrow"></i>
+</div>
+</div>
+
+</div>
+
+<button id="search-btn" class="search-btn">
+<span class="btn-text">誕生花を調べる</span>
+</button>
+
+<div id="result_area" style="display:none;">
+<p id="flower_name"></p>
+<p id="detail"></p>
+</div>
+
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <p>&copy; 2026 誕生花図鑑</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
