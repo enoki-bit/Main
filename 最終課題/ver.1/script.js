@@ -13,8 +13,6 @@ document.addEventListener('DOMContentLoaded', function()
 
   // 本を検索する関数(メインの処理)
   async function searchBooks() {
-
-    // 入力された文字を取得して変数wordに入れる
     const word = keyword.value; 
 
     // 結果と詳細を初期化する
