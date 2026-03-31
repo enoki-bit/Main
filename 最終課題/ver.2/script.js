@@ -1,117 +1,95 @@
-// 必要なHTML要素を取得する
-const keywordInput = document.getElementById('keyword');
-const searchButton = document.getElementById('searchButton');
-const message = document.getElementById('message');
-const resultsList = document.getElementById('resultsList');
-const detailArea = document.getElementById('detailArea');
+// HTMLが読み込まれた後に動くように定義する
+document.addEventListener('DOMContentLoaded', function()
+{
+  // idの取得
+  const keyword = document.getElementById("keyword");
+  const searchButton = document.getElementById("searchButton");
+  const message = document.getElementById("message");
+  const result = document.getElementById("result");
+  const detail = document.getElementById("detail");
 
-// 検索ボタンが押されたら searchBooks 関数を実行する
-searchButton.addEventListener('click', searchBooks);
+  // ボタンが押された時に走るイベント
+  searchButton.addEventListener("click", searchBooks);
 
-// Enterキーでも検索できるようにする
-keywordInput.addEventListener('keydown', function (event) {
-  if (event.key === 'Enter') {
-    searchBooks();
-  }
-});
+  // 本を検索する関数(メインの処理)
+  async function searchBooks() {
 
-// 本を検索する関数
-async function searchBooks() {
-  const keyword = keywordInput.value.trim();
+    // 入力された文字を取得して変数wordに入れる
+    const word = keyword.value; 
 
-  // 前回の検索結果を消す
-  resultsList.innerHTML = '';
-  detailArea.innerHTML = '検索結果から本を1冊選んでください。';
-  detailArea.className = 'detail-card empty-detail';
+    // 結果と詳細を初期化する
+    result.innerHTML = "";
+    detail.innerHTML = "ここに本の詳細を表示します";
 
-  // 入力が空ならエラー表示して終了
-  if (keyword === '') {
-    showMessage('キーワードを入力してください。', 'error');
-    return;
-  }
-
-  showMessage('検索中...', 'success');
-
-  try {
-    // Open Library API にアクセスするURL
-    const url = `https://openlibrary.org/search.json?q=${encodeURIComponent(keyword)}`;
-
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error('API通信に失敗しました。');
-    }
-
-    const data = await response.json();
-
-    // 検索結果が0件ならメッセージを表示して終了
-    if (data.docs.length === 0) {
-      showMessage('検索結果が見つかりませんでした。', 'error');
+    // 文字が入力されていない時の処理
+    if (word === "") {
+      message.textContent = "文字を入力してください";
       return;
     }
 
-    showMessage(`${data.docs.length}件見つかりました。上位10件を表示しています。`, 'success');
+    message.textContent = "検索中...";
 
-    // 最大10件だけ表示する
-    const books = data.docs.slice(0, 10);
+    // APIのURLを作成する
+    const url = "https://openlibrary.org/search.json?q=" + word;
 
-    books.forEach(function (book) {
-      // 1冊分のli要素を作る
-      const li = document.createElement('li');
-      li.className = 'result-item';
+    try {
+      const response = await fetch(url);  // APIにアクセスして結果をresponseに入れる
+      const data = await response.json(); // responseをjson形式に変換してJavaScriptで使える形に変える
 
-      const title = book.title || 'タイトル不明';
-      const author = book.author_name ? book.author_name.join(', ') : '著者不明';
-      const year = book.first_publish_year || '不明';
+      // 本が見つからなかった時の処理
+      if (data.docs.length === 0) {
+        message.textContent = "本が見つかりませんでした";
+        return;
+      }
 
-      li.innerHTML = `
-        <div class="result-title">${title}</div>
-        <p class="result-text"><strong>著者:</strong> ${author}</p>
-        <p class="result-text"><strong>初版発行年:</strong> ${year}</p>
-      `;
+      // 見つかった本の数を表示する
+      message.textContent = data.docs.length + "件見つかりました";
 
-      // クリックした本の詳細を右側に表示する
-      li.addEventListener('click', function () {
-        showBookDetail(book);
-      });
+      // 最初の5件の本のタイトルと著者を表示する
+      for (let i = 0; i < 5; i++) {
+        const book = data.docs[i];  // i番目の本の情報を定数bookに入れる
 
-      resultsList.appendChild(li);
-    });
-  } catch (error) {
-    showMessage('データの取得に失敗しました。時間をおいて再度試してください。', 'error');
-    console.error(error);
+        // bookが存在しない場合はループを抜ける
+        if (!book) {
+          break;
+        }
+
+        // HTMLにli要素を作成する
+        const li = document.createElement("li");
+
+        let title = "タイトル不明"; // タイトルがない場合の初期値
+        if (book.title) {
+          title = book.title;
+        }
+
+        let author = "著者不明";  // 著者がいない場合の初期値
+        if (book.author_name) {
+          author = book.author_name;
+        }
+
+        // li要素のテキストにタイトルと著者を入れる
+        li.textContent = title + " / " + author;
+
+        // li要素がクリックされたときのイベント
+        li.addEventListener("click", function () {
+
+          let year = "不明";  // 出版年がない場合の初期値
+          if (book.first_publish_year) {
+            year = book.first_publish_year;
+          }
+
+          // 詳細表示の内容を作成してdetailに入れる
+          detail.innerHTML =
+            "<h2>" + title + "</h2>" +
+            "<p>著者: " + author + "</p>" +
+            "<p>出版年: " + year + "</p>";
+        });
+
+        // li要素をresultに追加する
+        result.appendChild(li);
+      }
+    } catch (error) {
+      message.textContent = "エラーが起きました";
+    }
   }
-}
-
-// メッセージ表示用の関数
-function showMessage(text, type) {
-  message.textContent = text;
-  message.className = `message ${type}`;
-}
-
-// 選択した本の詳細を表示する関数
-function showBookDetail(book) {
-  detailArea.className = 'detail-card';
-
-  const title = book.title || 'タイトル不明';
-  const author = book.author_name ? book.author_name.join(', ') : '著者不明';
-  const year = book.first_publish_year || '不明';
-  const publisher = book.publisher ? book.publisher[0] : '不明';
-  const isbn = book.isbn ? book.isbn[0] : '不明';
-
-  // cover_i があれば表紙画像URLを作る
-  let coverHtml = '<p class="detail-text">表紙画像はありません。</p>';
-  if (book.cover_i) {
-    const coverUrl = `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`;
-    coverHtml = `<img src="${coverUrl}" alt="${title} の表紙" class="detail-cover">`;
-  }
-
-  detailArea.innerHTML = `
-    ${coverHtml}
-    <h3 class="detail-title">${title}</h3>
-    <p class="detail-text"><strong>著者:</strong> ${author}</p>
-    <p class="detail-text"><strong>初版発行年:</strong> ${year}</p>
-    <p class="detail-text"><strong>出版社:</strong> ${publisher}</p>
-    <p class="detail-text"><strong>ISBN:</strong> ${isbn}</p>
-  `;
-}
+});

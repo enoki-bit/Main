@@ -49,6 +49,11 @@ document.addEventListener('DOMContentLoaded', function()
       for (let i = 0; i < 5; i++) {
         const book = data.docs[i];  // i番目の本の情報を定数bookに入れる
 
+        // bookが存在しない場合はループを抜ける
+        if (!book) {
+          break;
+        }
+
         // HTMLにli要素を作成する
         const li = document.createElement("li");
 

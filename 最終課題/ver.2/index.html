@@ -1,46 +1,42 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>本情報検索サイト</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <h1>本情報検索サイト</h1>
-    <p class="subtitle">タイトルや著者名を入力して本を検索できます</p>
-  </header>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>本検索サイト</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+  </head>
 
-  <main class="container">
-    <section class="search-section">
-      <h2>本を検索</h2>
-      <div class="search-box">
-        <input
-          type="text"
-          id="keyword"
-          placeholder="例：Harry Potter / Natsume Soseki"
-        >
-        <button id="searchButton">検索</button>
-      </div>
-      <p id="message" class="message"></p>
-    </section>
+  <body>
+    <div class="container">
+      <header class="page-header">
+        <h1>本検索サイト</h1>
+        <p class="guide">本のタイトルを入力して検索してください</p>
+      </header>
 
-    <section class="content">
-      <section class="results-section">
-        <h2>検索結果</h2>
-        <ul id="resultsList" class="results-list"></ul>
+      <section class="search-card">
+        <h2 class="section-title">検索</h2>
+        <div class="search-area">
+          <input type="text" id="keyword" placeholder="例：となりのトトロ">
+          <button id="searchButton">検索</button>
+        </div>
+        <p id="message"></p>
       </section>
 
-      <section class="detail-section">
-        <h2>本の詳細</h2>
-        <div id="detailArea" class="detail-card empty-detail">
-          検索結果から本を1冊選んでください。
+      <section class="content-area">
+        <div class="list-area">
+          <h2 class="section-title">検索結果</h2>
+          <ul id="result"></ul>
+        </div>
+
+        <div class="detail-area">
+          <h2 class="section-title">本の詳細</h2>
+          <div id="detail">
+            ここに本の詳細を表示します
+          </div>
         </div>
       </section>
-    </section>
-  </main>
-
-  <script src="script.js"></script>
-</body>
+    </div>
+  </body>
 </html>
