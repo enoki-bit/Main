@@ -22,12 +22,12 @@ button {
   font-weight: bold;
 }
 
-#results {
+#result {
   margin-top: 20px;
   padding-left: 20px;
 }
 
-#results li {
+#result li {
   margin-bottom: 10px;
   cursor: pointer;
 }

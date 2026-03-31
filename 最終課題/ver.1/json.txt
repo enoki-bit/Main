@@ -1,0 +1,30 @@
+data  ← オブジェクト
+├─ numFound : 2
+├─ start : 0
+├─ numFoundExact : true
+├─ num_found : 2
+├─ documentation_url : "https://openlibrary.org/dev/docs/api/search"
+├─ q : "ポケットモンスター"
+├─ offset : null
+└─ docs : 配列
+   ├─ [0] : オブジェクト
+   │   ├─ ebook_access : "no_ebook"
+   │   ├─ edition_count : 1
+   │   ├─ has_fulltext : false
+   │   ├─ key : "/works/OL44151718W"
+   │   ├─ public_scan_b : false
+   │   └─ title : "ポケットモンスター XY おもしろ ブック..."
+   │
+   └─ [1] : オブジェクト
+       ├─ author_key : 配列
+       ├─ author_name : 配列
+       ├─ cover_edition_key : "OL59250496M"
+       ├─ cover_i : 15091904
+       ├─ ebook_access : "no_ebook"
+       ├─ edition_count : 2
+       ├─ first_publish_year : 2016
+       ├─ has_fulltext : false
+       ├─ key : "/works/OL43473710W"
+       ├─ language : 配列
+       ├─ public_scan_b : false
+       └─ title : "ポケットモンスターSPECIAL ..."
