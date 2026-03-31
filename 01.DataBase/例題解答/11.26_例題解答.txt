@@ -1,0 +1,22 @@
+-- 【例題1】
+SELECT
+    m_sho_bun.商品分類CD
+   ,m_sho_bun.商品分類名
+FROM m_商品分類 m_sho_bun
+INNER JOIN m_商品 m_sho
+    ON m_sho_bun.商品分類CD = m_sho.商品分類CD
+GROUP BY m_sho_bun.商品分類CD
+        ,m_sho_bun.商品分類名;
+
+-- 【例題2】
+SELECT
+    m_sya.社員CD
+   ,m_sya.氏名
+   ,m_busho.所属部署名
+   ,m_yaku.役職名
+FROM m_社員 m_sya
+LEFT JOIN m_所属部署 m_busho
+    ON m_sya.所属部署CD = m_busho.所属部署CD
+LEFT JOIN m_役職 m_yaku
+    ON m_sya.役職CD = m_yaku.役職CD;
+

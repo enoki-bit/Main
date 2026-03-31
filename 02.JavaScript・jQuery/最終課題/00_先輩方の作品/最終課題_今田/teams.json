@@ -1,0 +1,97 @@
+[
+{
+    "id": "tigers",
+    "name": "阪神タイガース",
+    "stadium": "阪神甲子園球場",
+    "manager": "藤川球児",
+    "color": "#ffdc00"
+  },
+
+  {
+    "id": "giants",
+    "name": "読売ジャイアンツ",
+    "stadium": "東京ドーム",
+    "manager": "阿部慎之助",
+    "color": "#ff8c00"
+  },
+
+  {
+    "id": "baystars",
+    "name": "横浜DeNAベイスターズ",
+    "stadium": "横浜スタジアム",
+    "manager": "相川亮二",
+    "color": "#005596"
+  },
+
+  {
+    "id": "carp",
+    "name": "広島東洋カープ",
+    "stadium": "MAZDA Zoom-Zoom スタジアム広島",
+    "manager": "新井貴浩",
+    "color": "#ff0000"
+  },
+
+  {
+    "id": "swallows",
+    "name": "東京ヤクルトスワローズ",
+    "stadium": "明治神宮球場",
+    "manager": "池上隆寛",
+    "color": "#002d72"
+  },
+
+  {
+    "id": "dragons",
+    "name": "中日ドラゴンズ",
+    "stadium": "バンテリンドームナゴヤ",
+    "manager": "井上一樹",
+    "color": "#0067b1"
+  },
+
+  {
+    "id": "hawks",
+    "name": "福岡ソフトバンクホークス",
+    "stadium": "みずほPayPayドーム福岡",
+    "manager": "小久保裕紀",
+    "color": "#f5c700"
+  },
+
+  {
+    "id": "fighters",
+    "name": "北海道日本ハムファイターズ",
+    "stadium": "エスコンフィールド HOKKAIDO",
+    "manager": "新庄剛志",
+    "color": "#00629b"
+  },
+
+  {
+    "id": "eagles",
+    "name": "東北楽天ゴールデンイーグルス",
+    "stadium": "楽天モバイルパーク宮城",
+    "manager": "三木肇",
+    "color": "#870010"
+  },
+
+  {
+    "id": "marines",
+    "name": "千葉ロッテマリーンズ",
+    "stadium": "ZOZOマリンスタジアム",
+    "manager": "サブロー",
+    "color": "#221815"
+  },
+
+  {
+    "id": "lions",
+    "name": "埼玉西武ライオンズ",
+    "stadium": "ベルーナドーム",
+    "manager": "西口文也",
+    "color": "#13274f"
+  },
+
+  {
+    "id": "buffaloes",
+    "name": "オリックス・バファローズ",
+    "stadium": "京セラドーム大阪",
+    "manager": "岸田護",
+    "color": "#b79b5b"
+  }
+]

@@ -1,0 +1,10 @@
+-- 【例題1】
+DELETE FROM m_社員
+WHERE 登録者 = '永野浩志';
+
+-- 【例題2】
+START TRANSACTION;
+
+DELETE FROM m_社員 WHERE 社員CD = 9;
+
+ROLLBACK;

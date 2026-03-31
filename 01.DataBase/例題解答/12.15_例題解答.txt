@@ -1,0 +1,28 @@
+-- 【例題1】
+SELECT
+    *
+FROM t_売上
+WHERE 売上日 = '2025/04/01';
+
+SELECT
+    売上伝票番号
+FROM t_売上
+WHERE 売上日 = '2025/04/01';
+
+-- 【例題2】
+SELECT
+*
+FROM t_売上
+WHERE 売上日 = '2025/04/01';
+
+SELECT
+*
+FROM t_売上_1
+WHERE 売上年月値 = 202504
+  AND 売上日 = '2025/04/01';
+
+SELECT
+*
+FROM t_売上_2
+WHERE 売上日 = '2025/04/01';
+

@@ -1,0 +1,51 @@
+-- 【例題1】
+SELECT
+    GET_YakushokuName(3);
+
+-- 【例題2】
+CREATE FUNCTION `GET_ShohinBunruiName_Nagano`
+(
+    Pra_商品分類CD INT
+) RETURNS varchar(60) CHARSET utf8mb4
+BEGIN
+
+    -- // 定数定義 Start ================================================
+
+    DECLARE Cnst_削除FLG_未削除 INT DEFAULT 0;
+
+    -- // 定数定義 End ==================================================
+
+    -- // 変数定義 Start ================================================
+
+    DECLARE 変数_商品分類名 VARCHAR(60);
+
+    -- // 変数定義 End ==================================================
+
+    -- // 変数の初期化
+    SET 変数_商品分類名 = '';
+
+    -- // パラメータのチェック
+    IF Pra_商品分類CD IS NULL THEN
+        RETURN 変数_商品分類名;
+    END IF;
+
+/*
+      SELECT
+        商品分類名
+    INTO 変数_商品分類名
+    FROM m_商品分類
+    WHERE 商品分類CD = Pra_商品分類CD
+      AND 削除FLG = Cnst_削除FLG_未削除;
+*/
+
+  SET 変数_商品分類名 =
+    (
+        SELECT
+            商品分類名
+        FROM m_商品分類
+        WHERE 商品分類CD = Pra_商品分類CD
+          AND 削除FLG = Cnst_削除FLG_未削除
+    );
+
+   RETURN 変数_商品分類名;
+END

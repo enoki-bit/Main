@@ -1,0 +1,242 @@
+/* ------------------------------
+   全体（背景・フォント）
+------------------------------ */
+
+@font-face {
+  font-family: "MashumaroHeart";
+  src: url("fonts/marshmallowpopheart.otf") format("truetype");
+}
+
+
+body {
+  font-family: "MashumaroHeart", "Hiragino Maru Gothic ProN", "Noto Sans JP", sans-serif;
+  letter-spacing: 0.5px;
+
+  background-image: url("img/background.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+  padding: 40px;
+  text-align: center;
+  color: #555;
+}
+
+
+
+/* ------------------------------
+   タイトル（サンリオ風）
+------------------------------ */
+h1 {
+  font-family: "MashumaroHeart", sans-serif;
+  font-size: 60px;   /* ← ここで大きさを変える！ */
+  font-weight: normal;
+  color: #ff7adf;
+
+  text-shadow:
+    0 0 8px rgba(255, 170, 240, 0.8),
+    0 0 14px rgba(255, 120, 220, 0.6),
+    0 2px 0 #fff;
+
+  margin-bottom: 25px;
+}
+
+
+/* ------------------------------
+   入力フォームの箱
+------------------------------ */
+.form-box {
+  background: rgba(255, 255, 255, 0.75);
+  padding: 25px;
+  border-radius: 20px;
+  width: 330px;
+  margin: 0 auto 30px;
+
+  box-shadow: 0 8px 20px rgba(255, 122, 209, 0.25);
+  backdrop-filter: blur(6px);
+}
+
+/* ------------------------------
+   プルダウン（ぷにぷに）
+------------------------------ */
+select {
+  font-family: "MashumaroHeart", sans-serif;
+  font-size: 20px;
+  font-weight: normal;
+  letter-spacing: 1px;
+
+  width: 120px;
+  padding: 10px;
+  margin: 5px;
+
+  border-radius: 14px;
+  border: 2px solid #f7c9f0; /* ← 淡いピンクに変更 */
+  background: rgba(255, 255, 255, 0.8); /* ← 白を少し透かす */
+
+  color: #b57fb3; /* ← 黒じゃなくて淡い紫に！ */
+
+  box-shadow:
+    0 4px 10px rgba(255, 183, 230, 0.25),
+    inset 0 2px 4px rgba(255, 255, 255, 0.7);
+
+  cursor: pointer;
+}
+
+/* option の文字色も淡く */
+select option {
+  color: #b57fb3;
+  background: #fff;
+}
+
+
+
+
+/* ------------------------------
+   ボタン（ぷにぷにボンボンドロップ）
+------------------------------ */
+button {
+  font-family: "MashumaroHeart", sans-serif;
+  font-size: 26px;
+  font-weight: normal;
+  letter-spacing: 1px;
+
+  padding: 18px 34px;
+  border: none;
+  border-radius: 50px;
+
+  background: linear-gradient(145deg, #ffb7ef, #ff6bd9);
+
+  color: white;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.7);
+
+  box-shadow:
+    0 6px 12px rgba(255, 122, 209, 0.4),
+    inset 0 3px 6px rgba(255, 255, 255, 0.6),
+    inset 0 -3px 6px rgba(255, 0, 150, 0.3);
+
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 10px 20px rgba(255, 122, 209, 0.5),
+    inset 0 4px 8px rgba(255, 255, 255, 0.7),
+    inset 0 -4px 8px rgba(255, 0, 150, 0.4);
+}
+
+button:active {
+  transform: translateY(1px);
+  box-shadow:
+    0 4px 10px rgba(255, 122, 209, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.5),
+    inset 0 -2px 4px rgba(255, 0, 150, 0.3);
+}
+
+
+/* ------------------------------
+   結果カード（ぷにぷにステッカー風）
+------------------------------ */
+.result {
+  margin-top: 30px;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+
+  box-shadow: 0 8px 20px rgba(255, 122, 209, 0.25);
+  backdrop-filter: blur(6px);
+
+  display: none;
+}
+
+/* カラー表示部分 */
+.color-box {
+  width: 100%;
+  height: 90px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* 名前 */
+.name {
+  font-size: 30px;
+  font-weight: normal;
+  color: #ff6bd9;
+  margin-bottom: 10px;
+  text-shadow: 0 0 6px rgba(255, 107, 217, 0.3);
+}
+
+/* メッセージ */
+.message {
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 1.7;
+  color: #666;
+}
+
+
+h1 {
+  animation: poyon-soft 3s infinite ease-in-out;
+}
+
+@keyframes poyon-soft {
+  0%   { transform: translateY(0) scale(1); }
+  20%  { transform: translateY(-3px) scale(1.015, 0.985); }
+  40%  { transform: translateY(0) scale(0.985, 1.015); }
+  60%  { transform: translateY(-1.5px) scale(1.01, 0.99); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+
+.result {
+  position: relative;
+  overflow: hidden;
+  --spark-x: 50%;
+  --spark-y: -20%;
+}
+
+/* 全画面ラメレイヤー */
+.twinkle-layer {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+/* ラメ粒を複数生成 */
+.twinkle-layer span {
+  position: absolute;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow:
+    0 0 6px rgba(255, 255, 255, 0.8),
+    0 0 10px rgba(255, 200, 255, 0.9);
+  opacity: 0;
+  animation: twinkle 2s infinite ease-in-out;
+}
+
+/* 点滅アニメーション */
+@keyframes twinkle {
+  0%   { opacity: 0; transform: scale(0.8); }
+  50%  { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 0; transform: scale(0.8); }
+}
+
+.input-guide {
+  font-size: 21px;
+  color: #ff8acb;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: normal;
+}
+
+

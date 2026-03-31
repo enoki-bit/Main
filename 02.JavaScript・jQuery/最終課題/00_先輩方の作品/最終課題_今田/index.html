@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>プロ野球データ図鑑</title>
+        <link rel="stylesheet"href="style.css">
+    </head>
+    <body>
+    <h1><span class="log-npb">NPB</span>チーム図鑑 ⚾</h1>
+
+    <div class="controls">
+        <select id="team-select">
+            <option value="">チームを選択...</option>
+            <option value="tigers">阪神タイガース</option>
+            <option value="giants">読売ジャイアンツ</option>
+            <option value="baystars">横浜DeNAベースターズ</option>
+            <option value="carp">広島東洋カープ</option>
+            <option value="wallows">東京ヤクルトスワローズ</option>
+            <option value="dragons">中日ドラゴンズ</option>
+            <option value="hawks">福岡ソフトバンクホークス</option>
+            <option value="fighters">北海道日本ハムファイターズ</option>
+            <option value="eagles">東北楽天ゴールデンイーグルス</option>
+            <option value="marines">千葉ロッテマリーンズ</option>
+            <option value="lions">埼玉西武ライオンズ</option>
+            <option value="buffaloes">オリックスバッファローズ</option>
+        </select>
+        <button id="get-info">情報を表示</button>
+    </div>
+
+    <div id="info-display" class="info-card">
+        <p>チームを選択してボタンを押してください</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

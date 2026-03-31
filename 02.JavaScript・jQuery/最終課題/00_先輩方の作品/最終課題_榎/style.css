@@ -1,0 +1,40 @@
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  background: #f7f7f7;
+}
+
+h1 {
+  color: #333;
+}
+
+input {
+  padding: 8px;
+  width: 250px;
+}
+
+button {
+  padding: 8px 12px;
+}
+
+#message {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+#result {
+  margin-top: 20px;
+  padding-left: 20px;
+}
+
+#result li {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+#detail {
+  margin-top: 20px;
+  padding: 15px;
+  background: white;
+  border: 1px solid #ccc;
+}

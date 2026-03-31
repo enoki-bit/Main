@@ -1,0 +1,175 @@
+/* 全体の背景設定 */
+
+body {
+
+    background: radial-gradient(circle, #2d5a27 0%, #1e3a1a 100%); /* 芝生のような深い緑 */
+    color: #333;
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+
+}
+
+/* --- NPBロゴ風のタイトルデザイン --- */
+
+h1 {
+    /*文字フォントと間隔*/
+    color: #fff;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+    font-style: italic;
+    font-family: 'Arial Black', sans-serif; 
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+}
+
+/* NPBという文字だけの特別な設定 */
+
+.logo-npb {
+
+    /* 左が青、右が赤の塗り分け */
+    background: linear-gradient(to right, #004098 50%, #e60012 50%);
+    /* 背景を文字の形に切り抜く*/
+    -webkit-background-clip: text;
+    background-clip: text;
+    
+    /* 文字自体の色を透明にして背景を見せる */
+    -webkit-text-fill-color: transparent;
+    font-weight: 900;
+    font-size: 1.4em;
+    
+    /* 白い縁取り*/
+    filter: drop-shadow(2px 2px 0px #ffffff);  
+    /* 横幅狭めてロゴっぽく */
+    transform: scaleX(0.9);
+    display: inline-block;
+}
+
+
+/* 操作エリア */
+
+.controls {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 50px;
+    backdrop-filter: blur(5px);
+    margin-bottom: 40px;
+}
+
+
+select, button {
+
+    padding: 12px 20px;
+    font-size: 16px;
+
+    border-radius: 25px;
+
+    border: none;
+
+    outline: none;
+
+}
+
+
+select {
+
+    cursor: pointer;
+
+    background-color: white;
+
+}
+
+
+button {
+
+    background-color: #d32f2f; /* 野球の縫い目のような赤 */
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: transform 0.2s, background-color 0.2s;
+
+    margin-left: 10px;
+
+}
+
+
+button:hover {
+
+    background-color: #b71c1c;
+
+    transform: scale(1.05);
+
+}
+
+/*チームカード*/
+
+.info-card {
+
+    background: white;
+
+/*幅*/   
+
+    min-width: 300px;
+
+    max-width: 90vw;
+
+    width: fit-content;   
+
+    padding: 30px 50px; 
+
+    border-radius: 20px;
+
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+
+    text-align: center;
+
+    transition: all 0.5s ease;
+
+}
+
+/* チーム名が改行されないようにする*/
+
+.info-card h2 {
+
+    white-space: nowrap;
+
+}
+
+/* カード内の装飾 */
+
+.info-card h2 {
+
+    font-size: 28px;
+
+    margin-top: 0;
+
+    border-bottom: 2px solid #eee;
+
+    padding-bottom: 10px;
+
+}
+
+.info-card p {
+
+    font-size: 18px;
+
+    margin: 15px 0;
+
+    color: #555;
+
+}
+
+.info-card strong {
+
+    color: #222;
+
+}

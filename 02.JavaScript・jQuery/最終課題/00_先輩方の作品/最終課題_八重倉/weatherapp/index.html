@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お天気アプリ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>天気チェッカー</h1>
+        <div class="search-box">
+            <input type="text" id="city-input" placeholder="都市名を入力 (例: Aira, Tokyo)">
+            <button id="search-btn">検索</button>
+        </div>
+
+        <div id="weather-result" class="weather-card hidden">
+            <h2 id="city-name"></h2>
+            <div id="weather-icon"></div>
+            <p id="temp"></p>
+            <p id="description"></p>
+            <p id="humidity"></p>
+        </div>
+        
+        <p id="error-msg" class="error hidden">都市が見つかりませんでした。</p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>配列の勉強 | 例題1</title>
+        <link rel = "stylesheet" href = "style.css">
+        <script src="script-q1.js"></script>
+    </head>
+
+    <body>
+
+        <form id="frm">
+            <div id="frm_title">
+                <h4>JavaScript 配列の勉強</h4>
+            </div>
+
+            <div id="frm_body">
+                <div class="body_row">
+                    <label class="lbl_title">氏名</label>
+                    <input type="text" id="txt_2"/>
+                </div>
+                <div class="body_row" id="gender">
+                    <label class="lbl_title">性別</label>
+                </div>
+                <div class="body_row">
+                    <label class="lbl_title">都道府県</label>
+                    <select id="sel_3">
+                    </select>
+                </div>
+                <div class="body_row">
+                    <label class="lbl_title">好きな果物</label>
+                    <select id="sel_4">
+                    </select>
+                </div>
+            </div>
+
+            <div id="frm_footer">
+                <button type="button" id="ft_btn">入力結果の追加</button>
+                <button type="button" id="ft_btn2">入力結果の表示</button>
+            </div>
+
+        </form>
+
+        <table class="table">
+            <thead class="thead">
+                <tr class="tr">
+                    <th class="th">氏名</td>
+                    <th class="th">性別</td>
+                    <th class="th">都道府県</td>
+                    <th class="th">好きな果物</td>
+                </tr>
+            </thead>
+            <tbody id="result">
+            </tbody>
+        </table>
+    </body>
+
+</html>

@@ -1,0 +1,208 @@
+/* ============================
+   Global
+============================ */
+body {
+  font-family: 'Cinzel', serif;
+  background: url("/image/background_img.png") center/cover no-repeat fixed;
+  margin: 0;
+  padding: 60px 0 140px;
+  color: #3e332b;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(250, 242, 228, 0.349);
+  backdrop-filter: blur(4px) brightness(1.03);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ============================
+   Title
+============================ */
+#main-title {
+  font-size: 60px;
+  font-family: 'Cinzel', serif;
+
+  background: linear-gradient(180deg, #f3d9b0 0%, #e8c89a 40%, #d9b88a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  text-shadow:
+    1px 1px 0 #c9a878,
+    3px 3px 6px rgba(0,0,0,0.25);
+
+  display: block;
+  margin: 0 auto 20px;
+  text-align: center;
+}
+
+/* ============================
+   Layout
+============================ */
+#layout {
+  display: flex;
+  gap: 25px;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+/* ============================
+   Left Panel
+============================ */
+#left-panel {
+  width: 600px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(250, 242, 228, 0.92),
+    rgba(240, 230, 210, 0.85)
+  );
+
+  padding: 30px;
+  border-radius: 18px;
+
+  border: 2px solid rgba(210, 180, 140, 0.7);
+
+  box-shadow:
+    0 4px 14px rgba(0,0,0,0.18),
+    inset 0 0 12px rgba(255, 255, 240, 0.6);
+}
+
+/* ============================
+   Right Panel
+============================ */
+#right-panel {
+  flex: 1;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 250, 0.92),
+    rgba(245, 235, 220, 0.85)
+  );
+
+  padding: 40px;
+  border-radius: 18px;
+
+  border: 2px solid rgba(210, 180, 140, 0.65);
+
+  box-shadow:
+    0 4px 14px rgba(0,0,0,0.18),
+    inset 0 0 10px rgba(255, 255, 240, 0.6);
+}
+
+h3 {
+  font-size: 22px;
+  margin: 0;
+  color: #6a4a2a;
+  text-shadow: 0 1px 2px rgba(255, 255, 240, 0.6);
+
+}
+
+/* ============================
+   Form
+============================ */
+label {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: #6a4a2a;
+  text-shadow: 0 1px 2px rgba(255, 255, 240, 0.6);
+  display: block;
+  margin-top: 25px;
+}
+
+select, button {
+  padding: 14px 16px;
+  margin-top: 12px;
+  border-radius: 12px;
+  font-size: 15px;
+  color: #4a3f35;
+}
+
+select {
+  border: 2px solid #c8b090;
+  background: rgba(255, 255, 250, 0.95);
+
+  box-shadow:
+    0 2px 6px rgba(0,0,0,0.12),
+    inset 0 0 6px rgba(255, 255, 240, 0.8);
+
+  transition: 0.25s ease;
+}
+
+select:focus {
+  border-color: #b89a70;
+  box-shadow:
+    0 3px 10px rgba(0,0,0,0.18),
+    inset 0 0 8px rgba(255, 255, 240, 1);
+}
+
+button {
+  border: none;
+  background: linear-gradient(135deg, #d8c2a0, #b89a70);
+  color: #fffdf7;
+  font-weight: 700;
+
+  box-shadow:
+    0 4px 12px rgba(0,0,0,0.22),
+    inset 0 0 6px rgba(255, 255, 240, 0.8);
+
+  transition: 0.25s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #e6d4b8, #c8ab7c);
+}
+
+/* ============================
+   Result
+============================ */
+#result img {
+  max-width: 360px;
+  border-radius: 14px;
+
+  box-shadow:
+    0 6px 16px rgba(0,0,0,0.18),
+    0 0 0 3px rgba(255, 255, 240, 0.9) inset;
+
+  margin-top: 20px;
+}
+
+/* ============================
+   Slider
+============================ */
+#slider-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  background: rgba(255, 255, 245, 0.55);
+  padding: 14px 0;
+  backdrop-filter: blur(4px);
+}
+
+#slider {
+  display: flex;
+  gap: 20px;
+  padding-left: 20px;
+  animation: slide 40s linear infinite;
+}
+
+#slider img {
+  width: 160px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+@keyframes slide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

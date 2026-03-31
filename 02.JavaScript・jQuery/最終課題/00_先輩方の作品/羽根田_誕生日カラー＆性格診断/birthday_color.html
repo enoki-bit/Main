@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>誕生日カラー診断</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>誕生日カラー&性格診断</h1>
+
+
+  <div class="form-box">
+    <p class="input-guide">🎀 誕生日を入力してね 🎀</p>
+    <select id="month">
+      <option value="">月を選択</option>
+    </select>
+
+    <select id="day">
+      <option value="">日を選択</option>
+    </select>
+
+    <button id="searchBtn">診断する</button>
+  </div>
+
+
+  <div class="result" id="resultBox">
+    <div class="color-box" id="colorBox"></div>
+    <div class="name" id="colorName"></div>
+    <div class="message" id="colorMessage"></div>
+  </div>
+
+  <script src="birthday_color.js"></script>
+
+  <div class="twinkle-layer"></div>
+
+
+
+</body>
+</html>

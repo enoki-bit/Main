@@ -1,0 +1,106 @@
+-- 【例題3】
+CREATE PROCEDURE `GET_UriageTax`
+(
+    IN Pra_処理日時 DATETIME
+   ,IN Pra_処理者名 VARCHAR(60)
+   ,IN Pra_処理機能ID INT
+   ,IN Pra_端末IP VARCHAR(15)
+   ,IN Pra_指定年月 VARCHAR(7)
+   ,OUT Pra_処理結果 INT
+)
+BEGIN
+
+    -- // 定数定義 Start ================================================
+
+    DECLARE Cnst_処理結果_正常 INT DEFAULT 1;
+    DECLARE Cnst_処理結果_ERR INT DEFAULT -9;
+
+    DECLARE Cnst_削除FLG_未削除 INT DEFAULT 0;
+
+    -- // 定数定義 End ==================================================
+
+    -- // 変数定義 Start ================================================
+
+    DECLARE 変数_売上年月日_開始日 VARCHAR(10);
+    DECLARE 変数_売上年月日_終了日 VARCHAR(10);
+
+    -- // 変数定義 End ==================================================
+
+    -- /// 例外時処理設定
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        SET Pra_処理結果 = Cnst_処理結果_ERR;
+    END;
+
+    METHOD:BEGIN
+
+        -- // パラメータのチェック
+        IF IFNULL(Pra_端末IP, '') = '' THEN
+            SET Pra_処理結果 = Cnst_処理結果_ERR;
+            LEAVE METHOD;
+        END IF;
+
+        IF IFNULL(Pra_指定年月, '') = '' THEN
+            SET Pra_処理結果 = Cnst_処理結果_ERR;
+            LEAVE METHOD;
+        ELSEIF DAYOFYEAR(CONCAT(Pra_指定年月, '/01')) IS NULL THEN
+            SET Pra_処理結果 = Cnst_処理結果_ERR;
+            LEAVE METHOD;
+        END IF;
+
+        -- // 取得範囲の算出
+        SET 変数_売上年月日_開始日 = CONCAT(Pra_指定年月, '/01');
+        SET 変数_売上年月日_終了日 = DATE_FORMAT(DATE_ADD(DATE_ADD(CONCAT(Pra_指定年月, '/01'), INTERVAL 1 MONTH), INTERVAL -1 DAY), '%Y/%m/%d');
+
+        -- // w_得意先別消費税 DELETE
+        DELETE FROM w_得意先別消費税
+        WHERE 端末IP = Pra_端末IP;
+
+        -- // w_得意先別消費税 INSERT
+        INSERT INTO w_得意先別消費税
+        (
+           登録日時
+          ,登録者
+          ,登録機能ID
+          ,更新日時
+          ,更新者
+          ,更新機能ID
+          ,内部更新日時
+          ,内部更新者
+          ,内部更新機能ID
+          ,削除FLG
+          ,端末IP
+          ,売上年月
+          ,得意先CD
+          ,消費税額
+        )
+        SELECT
+            Pra_処理日時 AS 登録日時
+           ,Pra_処理者名 AS 登録者
+           ,Pra_処理機能ID AS 登録機能ID
+           ,Pra_処理日時 AS 更新日時
+           ,Pra_処理者名 AS 更新者
+           ,Pra_処理機能ID AS 更新機能ID
+           ,Pra_処理日時 AS 内部更新日時
+           ,Pra_処理者名 AS 内部更新者
+           ,Pra_処理機能ID AS 内部更新機能ID
+           ,Cnst_削除FLG_未削除 AS 削除FLG
+           ,Pra_端末IP AS 端末IP
+           ,SUBSTRING(t_uri.売上日, 1, 7) AS 売上年月
+           ,t_uri.得意先CD
+           ,SUM(ROUND(ROUND(t_uri.販売数量 * m_sho.税抜販売価格, 0) * 0.1, 0)) AS 消費税額
+        FROM t_売上 t_uri
+        LEFT JOIN m_商品 m_sho
+            ON t_uri.商品CD = m_sho.商品CD
+        WHERE t_uri.売上日 >= 変数_売上年月日_開始日
+          AND t_uri.売上日 <= 変数_売上年月日_終了日
+          AND t_uri.削除FLG = Cnst_削除FLG_未削除
+        GROUP BY SUBSTRING(t_uri.売上日, 1, 7)
+                ,t_uri.得意先CD;
+
+        -- // 戻り値のセット
+        SET Pra_処理結果 = Cnst_処理結果_正常;
+
+    END METHOD;
+
+END

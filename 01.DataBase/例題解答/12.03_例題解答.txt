@@ -1,0 +1,42 @@
+-- 【例題4】
+SELECT
+    MIN(t_uri_sum.販売数量計) AS 販売数量計
+FROM
+    (
+        SELECT
+            SUBSTRING(t_uri.売上日, 1, 7) AS 売上年月
+           ,SUM(t_uri.販売数量) AS 販売数量計
+        FROM t_売上 t_uri
+        GROUP BY SUBSTRING(t_uri.売上日, 1, 7)
+    ) t_uri_sum
+
+-- 【例題5】
+SELECT
+    t_uri_sum.売上年月
+   ,t_uri_sum.得意先CD
+   ,m_tok.得意先名
+   ,t_uri_sum.商品CD
+   ,m_sho.商品名
+   ,t_uri_sum.販売数量計
+   ,t_uri_sum.販売金額計
+FROM
+    (
+        SELECT
+            SUBSTRING(t_uri.売上日, 1, 7) AS 売上年月
+           ,t_uri.得意先CD
+           ,t_uri.商品CD
+           ,SUM(t_uri.販売数量) AS 販売数量計
+           ,SUM(ROUND(t_uri.販売数量 * IFNULL(m_sho.税抜販売価格, 0), 0)) AS 販売金額計
+        FROM t_売上 t_uri
+        LEFT JOIN m_商品 m_sho
+            ON t_uri.商品CD = m_sho.商品CD
+        GROUP BY SUBSTRING(t_uri.売上日, 1, 7)
+                ,t_uri.得意先CD
+                ,t_uri.商品CD
+    ) t_uri_sum
+LEFT JOIN m_得意先 m_tok
+    ON t_uri_sum.得意先CD = m_tok.得意先CD
+LEFT JOIN m_商品 m_sho
+    ON t_uri_sum.商品CD = m_sho.商品CD
+WHERE t_uri_sum.販売数量計 >= 300
+  AND t_uri_sum.販売数量計 <= 500;

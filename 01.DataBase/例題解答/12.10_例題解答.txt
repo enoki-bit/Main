@@ -1,0 +1,28 @@
+-- 【例題5】
+UPDATE m_社員 SET
+    更新日時 = GETDATE()
+   ,更新者 = '永野浩志'
+   ,役職CD = 3
+WHERE 社員CD = 6;
+
+
+-- 【例題6】
+UPDATE t_売上 t_uri
+INNER JOIN
+    (
+        SELECT
+            t_uri.売上伝票番号
+           ,t_uri.明細番号
+           ,m_sya.社員CD
+           ,m_sya.役職CD
+        FROM t_売上 t_uri
+        LEFT JOIN m_得意先 m_tok
+            ON t_uri.得意先CD = m_tok.得意先CD
+        LEFT JOIN m_社員 m_sya
+            ON m_tok.得意先担当者CD = m_sya.社員CD
+        WHERE t_uri.売上日 = '2025/04/10'
+          AND m_sya.役職CD = 3
+    ) t_key
+    ON t_uri.売上伝票番号 = t_key.売上伝票番号
+   AND t_uri.明細番号 = t_key.明細番号 SET
+    t_uri.削除FLG = 1;

@@ -1,0 +1,109 @@
+-- 【例題6】
+WITH t_uri_sub AS
+(
+    SELECT
+        t_uri.売上伝票番号
+       ,t_uri.売上日
+       ,t_uri.得意先CD
+       ,t_uri.明細番号
+       ,t_uri.商品CD
+       ,t_uri.販売数量
+       ,ROUND(t_uri.販売数量 * m_sho.税抜販売価格, 0) AS 販売金額
+    FROM t_売上 t_uri
+    LEFT JOIN m_商品 m_sho
+        ON t_uri.商品CD = m_sho.商品CD
+    WHERE t_uri.売上日 = '2025/04/01'
+)
+SELECT
+    tbl.売上伝票番号
+   ,tbl.売上日
+   ,tbl.得意先CD
+   ,m_tok.得意先名
+   ,tbl.明細番号
+   ,tbl.商品CD
+   ,m_sho.商品名
+   ,tbl.販売数量
+   ,tbl.販売金額
+FROM
+    (
+        SELECT
+            t_uri_sub.売上伝票番号
+           ,t_uri_sub.売上日
+           ,t_uri_sub.得意先CD
+           ,t_uri_sub.明細番号
+           ,t_uri_sub.商品CD
+           ,t_uri_sub.販売数量
+           ,t_uri_sub.販売金額
+        FROM t_uri_sub
+        UNION
+        SELECT
+            t_uri_sub.売上伝票番号
+           ,t_uri_sub.売上日
+           ,t_uri_sub.得意先CD
+           ,99 AS 明細番号
+           ,NULL AS 商品CD
+           ,NULL AS 販売数量
+           ,ROUND(SUM(t_uri_sub.販売金額) * 0.1, 0) AS 販売金額
+        FROM t_uri_sub
+        GROUP BY t_uri_sub.売上伝票番号
+                ,t_uri_sub.売上日
+                ,t_uri_sub.得意先CD
+    ) tbl
+LEFT JOIN m_得意先 m_tok
+    ON tbl.得意先CD = m_tok.得意先CD
+LEFT JOIN m_商品 m_sho
+    ON tbl.商品CD = m_sho.商品CD
+ORDER BY tbl.売上伝票番号
+        ,tbl.明細番号;
+
+-- 【例題1】
+INSERT INTO m_社員
+(
+    登録日時
+   ,登録者
+   ,登録機能ID
+   ,更新日時
+   ,更新者
+   ,更新機能ID
+   ,内部更新日時
+   ,内部更新者
+   ,内部更新機能ID
+   ,削除FLG
+   ,社員CD
+   ,氏名
+   ,氏名カナ
+   ,所属部署CD
+   ,役職CD
+   ,性別区分
+   ,電話番号
+) VALUES (
+    GETDATE()
+   ,'永野浩志'
+   ,1234
+   ,CURRENT_TIMESTAMP()
+   ,'永野浩志'
+   ,1234
+   ,NOW()
+   ,'永野浩志'
+   ,1234
+   ,0
+   ,15
+   ,'永野浩志'
+   ,'ﾅｶﾞﾉﾋﾛｼ'
+   ,1
+   ,NULL
+   ,1
+   ,'0995-73-7788'
+);
+
+-- 【例題2】
+INSERT INTO m_社員
+(
+    社員CD
+   ,氏名
+   ,氏名カナ
+) VALUES (
+    20
+   ,'永野浩志'
+   ,'ﾅｶﾞﾉﾋﾛｼ'
+);

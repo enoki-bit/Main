@@ -1,0 +1,42 @@
+【例題1】
+SELECT
+    社員CD
+   ,氏名
+   ,氏名カナ
+FROM m_社員
+
+-- 【例題2】
+SELECT
+    *
+FROM m_得意先
+WHERE 得意先担当者CD = 7;
+
+-- 【例題3】
+SELECT
+    *
+FROM m_社員
+WHERE 役職CD IS NOT NULL;
+
+-- 【例題4】
+SELECT
+    *
+FROM m_社員
+WHERE 氏名 LIKE ‘%郎%’;
+
+-- 【例題5】
+SELECT
+    *
+FROM m_商品
+WHERE MakerCD IN (1, 2, 3);
+
+SELECT
+    *
+FROM m_商品
+WHERE MakerCD >= 1
+  AND MakerCD <= 3;
+
+SELECT
+    *
+FROM m_商品
+WHERE MakerCD BETWEEN 1 AND 3;
+

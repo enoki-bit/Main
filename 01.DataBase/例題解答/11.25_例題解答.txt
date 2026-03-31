@@ -1,0 +1,121 @@
+【例題6】
+SELECT
+    MakerCD
+   ,COUNT(商品CD)
+FROM m_商品
+GROUP BY MakerCD;
+
+【例題7】
+SELECT
+    商品分類CD
+   ,MakerCD
+   ,COUNT(商品CD)
+FROM m_商品
+GROUP BY 商品分類CD
+        ,MakerCD;
+
+【例題8】
+SELECT
+    SUBSTRING(売上日, 1, 7)
+   ,SUM(販売数量)
+FROM t_売上
+GROUP BY SUBSTRING(売上日, 1, 7);
+
+【例題9】
+SELECT
+    商品CD
+   ,AVG(販売数量)
+FROM t_売上
+GROUP BY 商品CD;
+
+【例題10】
+SELECT
+    *
+FROM t_売上
+WHERE 売上日 = ‘2025/04/01’
+ORDER BY 売上伝票番号
+        ,明細番号 DESC;
+
+【例題11】
+SELECT
+    *
+   ,CASE
+        WHEN 販売数量 = 1 THEN
+            ‘●’
+        ELSE
+            ‘×’
+    END
+FROM t_売上
+WHERE 売上日 = ‘2025/04/01’
+ORDER BY 売上伝票番号
+        ,明細番号;
+
+【例題12】
+SELECT
+    MakerCD AS CD
+   ,Maker名 AS 名称
+   ,Maker名カナ AS 名称カナ
+FROM m_Maker
+UNION
+SELECT
+    商品分類CD AS CD
+   ,商品分類名 AS 名称
+   ,商品分類名カナ AS 名称カナ
+FROM m_商品分類;
+
+【例題13】
+SELECT
+    得意先CD
+   ,SUM(
+        CASE
+            WHEN SUBSTRING(売上日, 1, 7) = '2025/04' THEN
+                販売数量
+            ELSE
+                0
+        END
+    ) AS 4月販売数量
+   ,SUM(
+        CASE
+            WHEN SUBSTRING(売上日, 1, 7) = '2025/05' THEN
+                販売数量
+            ELSE
+                0
+        END
+    ) AS 5月販売数量
+   ,SUM(
+        CASE
+            WHEN SUBSTRING(売上日, 1, 7) = '2025/06' THEN
+                販売数量
+            ELSE
+                0
+        END
+    ) AS 6月販売数量
+   ,SUM(
+        CASE
+            WHEN SUBSTRING(売上日, 1, 7) = '2025/07' THEN
+                販売数量
+            ELSE
+                0
+        END
+    ) AS 7月販売数量
+   ,SUM(
+        CASE
+            WHEN SUBSTRING(売上日, 1, 7) = '2025/08' THEN
+                販売数量
+            ELSE
+                0
+        END
+    ) AS 8月販売数量
+   ,SUM(
+        CASE
+            WHEN SUBSTRING(売上日, 1, 7) = '2025/09' THEN
+                販売数量
+            ELSE
+                0
+        END
+    ) AS 9月販売数量
+FROM t_売上
+WHERE SUBSTRING(売上日, 1, 7) >= '2025/04'
+  AND SUBSTRING(売上日, 1, 7) <= '2025/09'
+GROUP BY 得意先CD
+ORDER BY 得意先CD;

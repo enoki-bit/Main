@@ -1,0 +1,17 @@
+-- 【例題3】
+SELECT
+    t_uri.*
+FROM t_売上 t_uri
+INNER JOIN
+    (
+        SELECT
+            t_uri_sub.売上伝票番号
+           ,MIN(t_uri_sub.明細番号) AS 最小明細番号
+        FROM t_売上 t_uri_sub
+        WHERE t_uri_sub.売上日 = '2025/04/01'
+        GROUP BY t_uri_sub.売上伝票番号
+    ) t_uri_min
+    ON t_uri.売上伝票番号 = t_uri_min.売上伝票番号
+   AND t_uri.明細番号 = t_uri_min.最小明細番号
+WHERE t_uri.売上日 = '2025/04/01';
+

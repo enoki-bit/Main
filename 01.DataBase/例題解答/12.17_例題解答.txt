@@ -1,0 +1,32 @@
+-- 【例題1】
+CREATE VIEW v_商品_Nagano
+AS
+SELECT
+    m_sho.商品CD
+   ,m_sho.商品名
+   ,m_sho.商品分類CD
+   ,m_sho_bun.商品分類名
+   ,m_sho.MakerCD
+   ,m_mk.Maker名
+FROM m_商品 m_sho
+LEFT JOIN m_商品分類 m_sho_bun
+    ON m_sho.商品分類CD = m_sho_bun.商品分類CD
+LEFT JOIN m_Maker m_mk
+    ON m_sho.MakerCD = m_mk.MakerCD;
+
+-- 【例題2】
+SELECT
+    t_uri.売上伝票番号
+   ,t_uri.売上日
+   ,t_uri.得意先CD
+   ,t_uri.明細番号
+   ,t_uri.商品CD
+   ,v_sho.商品名
+   ,v_sho.商品分類CD
+   ,v_sho.商品分類名
+   ,v_sho.MakerCD
+   ,v_sho.Maker名
+FROM t_売上 t_uri
+LEFT JOIN v_商品_Nagano v_sho
+    ON t_uri.商品CD = v_sho.商品CD
+WHERE t_uri.売上日 = '2025/04/01’;

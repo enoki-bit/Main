@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>世界の料理図鑑</title>
+
+  <!-- クッキー系フォント -->
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Fredoka+One&family=Baloo+2:wght@600&family=Lilita+One&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- タイトル（中央固定） -->
+  <h1 id="main-title" class="cookie-baloo">世界の料理図鑑</h1>
+
+  <div id="layout">
+
+    <!-- 左パネル -->
+    <div id="left-panel">
+      <h2>料理を選ぶ</h2>
+
+      <label for="category">カテゴリ</label>
+      <select id="category">
+        <option value="">読み込み中...</option>
+      </select>
+
+      <label for="meal">料理</label>
+      <select id="meal">
+        <option value="">先にカテゴリを選んでください</option>
+      </select>
+
+      <button id="load">詳細を表示</button>
+    </div>
+
+    <!-- 右パネル（料理カード） -->
+    <div id="right-panel">
+      <div id="result"></div>
+    </div>
+
+  </div>
+
+  <!-- 下固定スライダー -->
+  <div id="slider-fixed">
+    <div id="slider"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
